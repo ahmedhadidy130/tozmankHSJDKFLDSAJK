@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>BLACK MUSIC BOT Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top,#312e81 0%,transparent 40%),
+    linear-gradient(
+        120deg,
+        #020617,
+        #0f172a,
+        #1e293b,
+        #312e81
+    );
+
+    background-size:400% 400%;
+    animation:bgMove 18s ease infinite;
+
+    color:white;
+    font-family:Arial,sans-serif;
+
+    overflow-x:hidden;
+}
+
+
+@keyframes bgMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+
+/* WATERMARK */
+
+body::before{
+
+    content:"BLACK MUSIC BOT";
+
+    position:fixed;
+
+    top:45%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:130px;
+    font-weight:1000;
+
+    letter-spacing:15px;
+
+    color:rgba(255,255,255,.035);
+
+    white-space:nowrap;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    animation:watermark 10s infinite alternate;
+
+}
+
+
+@keyframes watermark{
+
+    from{
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+    to{
+        transform:translate(-50%,-50%) scale(1.08);
+    }
+
+}
+
+
+
+
+.container{
+
+    position:relative;
+    z-index:1;
+
+}
+
+
+
+/* HEADER */
+
+.header{
+
+    text-align:center;
+    padding:35px;
+
+}
+
+
+.header h1{
+
+    font-size:65px;
+
+    font-weight:1000;
+
+    letter-spacing:5px;
+
+    color:#facc15;
+
+    text-shadow:
+
+    0 0 15px rgba(250,204,21,.8),
+
+    0 0 40px rgba(250,204,21,.4);
+
+
+    animation:titlePulse 3s infinite alternate;
+
+}
+
+
+
+@keyframes titlePulse{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.05);
+    }
+
+}
+
+
+
+.header p{
+
+    color:#e2e8f0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+
+
+
+/* CARDS */
+
+
+.card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(
+    145deg,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.05)
+    );
+
+
+    backdrop-filter:blur(18px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+
+    border-radius:28px;
+
+
+    padding:22px;
+
+
+    color:white;
+
+
+    transition:.4s;
+
+
+    animation:cardShow .8s ease;
+
+
+}
+
+
+
+
+@keyframes cardShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+
+    left:-100%;
+
+
+    width:200%;
+
+    height:200%;
+
+
+    background:
+
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+    );
+
+
+    transform:rotate(25deg);
+
+
+    animation:shine 6s infinite;
+
+}
+
+
+
+@keyframes shine{
+
+    0%{
+        left:-150%;
+    }
+
+    50%{
+        left:150%;
+    }
+
+    100%{
+        left:150%;
+    }
+
+}
+
+
+
+
+
+.card:hover{
+
+
+    transform:
+
+    translateY(-12px)
+
+    scale(1.03);
+
+
+    border-color:#facc15;
+
+
+    box-shadow:
+
+    0 0 25px rgba(250,204,21,.35),
+
+    0 0 60px rgba(56,189,248,.25);
+
+
+}
+
+
+
+
+/* KEEP YOUR COLORS */
+
+
+.label{
+
+    color:#fbbf24;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    text-shadow:
+
+    0 0 10px rgba(251,191,36,.5);
+
+}
+
+
+
+
+.value{
+
+    font-size:32px;
+
+    font-weight:900;
+
+    color:#f8fafc;
+
+    text-shadow:
+
+    0 0 12px rgba(255,255,255,.35);
+
+}
+
+
+
+
+
+#song{
+
+    color:#facc15;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    text-shadow:
+
+    0 0 15px rgba(250,204,21,.7);
+
+}
+
+
+
+
+#artist{
+
+    color:#38bdf8;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+
+
+
+.card h4{
+
+    color:#fbbf24;
+
+    font-weight:900;
+
+}
+
+
+
+
+
+#cpu,
+#ram{
+
+    color:#f8fafc;
+
+    font-size:22px;
+
+    font-weight:900;
+
+}
+
+
+
+
+
+.duration-box{
+
+    margin-top:15px;
+
+    color:#fbbf24;
+
+    font-weight:800;
+
+    font-size:17px;
+
+}
+
+
+
+
+.btn-control{
+
+    border-radius:18px;
+
+    padding:14px;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    transition:.3s;
+
+}
+
+
+.btn-control:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 20px rgba(255,255,255,.4);
+
+}
+
+
+
+
+.footer{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#f8fafc;
+
+    opacity:.8;
+
+}
+
+/* ================= COMMANDS ================= */
+
+.command-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    transition:.35s;
+}
+
+.command-card:hover{
+    transform:translateY(-6px);
+    border-color:#facc15;
+    box-shadow:0 0 20px rgba(250,204,21,.35);
+}
+
+.command-card h4{
+    color:#facc15;
+    font-weight:900;
+    text-align:center;
+    margin-bottom:18px;
+    letter-spacing:1px;
+}
+
+.cmd{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 14px;
+    margin-bottom:10px;
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    transition:.25s;
+}
+
+.cmd:hover{
+    background:rgba(250,204,21,.12);
+    transform:translateX(5px);
+}
+
+.cmd b{
+    color:#38bdf8;
+    font-size:15px;
+}
+
+.cmd span{
+    color:#f8fafc;
+    font-size:14px;
+    opacity:.9;
+}
+
+#commandsBox{
+    margin-top:40px;
+    animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+    
+    
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>
+🎵 <span id="bot_name">BLACK MUSIC BOT</span>
+</h1>
+
+<p>
+Advanced Music Bot Control Panel
+</p>
+
+</div>
+
+
+
+<div class="row g-4">
+
+<!-- FAVORITE MANAGER -->
+
+<div class="col-md-12">
+
+<div class="card">
+
+<h4>
+⭐ Favorite Music Manager
+</h4>
+
+
+<div class="input-group mb-3">
+
+<input 
+id="favSearch"
+class="form-control"
+placeholder="Search YouTube song..."
+>
+
+
+<button 
+class="btn btn-warning"
+onclick="searchYoutube()">
+
+🔍 Search
+
+</button>
+
+</div>
+
+
+
+<div id="youtubeResults"></div>
+
+
+<hr>
+
+
+<h5 style="color:#fbbf24;font-weight:900;">
+🎵 Your Favorite Songs
+</h5>
+
+
+<div id="favoriteList">
+
+Loading...
+
+</div>
+
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+<div class="card text-center">
+
+<div class="label">
+STATUS
+</div>
+
+<div id="online" class="value">
+...
+</div>
+
+</div>
+</div>
+
+
+
+<div class="col-md-3">
+<div class="card text-center">
+
+<div class="label">
+USERS
+</div>
+
+<div id="users" class="value">
+0
+</div>
+
+</div>
+</div>
+
+
+
+<div class="col-md-3">
+<div class="card text-center">
+
+<div class="label">
+VIP
+</div>
+
+<div id="vip" class="value">
+0
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="col-md-3">
+<div class="card text-center">
+
+<div class="label">
+QUEUE
+</div>
+
+<div id="queue" class="value">
+0
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="col-md-8">
+
+<div class="card">
+
+<div class="label">
+NOW PLAYING
+</div>
+
+
+<div id="song" class="song">
+Nothing Playing
+</div>
+
+
+<div id="artist">
+</div>
+
+
+<br>
+
+<div class="duration-box">
+    ⏱ Duration:
+    <b id="duration">--:--</b>
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-4">
+
+<div class="card">
+
+<h4>
+🎮 Controls
+</h4>
+
+
+<button class="btn btn-warning btn-control mb-3"
+onclick="skipSong()">
+
+⏭ SKIP SONG
+
+</button>
+
+
+
+<button class="btn btn-danger btn-control"
+onclick="restartBot()">
+
+🔄 RESTART BOT
+
+    
+    
+</button>
+
+    
+<button class="btn btn-info btn-control mt-3"
+onclick="toggleCommands()">
+
+📖 COMMANDS
+
+</button>    
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+<div class="card">
+
+<h4>
+⚡ CPU
+</h4>
+
+<span id="cpu">
+0
+</span>%
+
+
+<div class="progress mt-2">
+
+<div id="cpub"
+class="progress-bar"
+style="width:0%">
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+<div class="card">
+
+<h4>
+💾 RAM
+</h4>
+
+<span id="ram">
+0
+</span>%
+
+
+<div class="progress mt-2">
+
+<div id="ramb"
+class="progress-bar bg-success"
+style="width:0%">
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-12">
+
+<div class="card text-center">
+
+<h4>
+⏱ Uptime
+</h4>
+
+<div id="uptime"
+class="value">
+0s
+</div>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+<div class="footer">
+
+BLACK MUSIC BOT © 2026
+
+</div>
+
+<div id="commandsBox" style="display:none;margin-top:30px;">
+
+<div class="card">
+
+<h2 style="text-align:center;color:#facc15;font-weight:900;margin-bottom:30px;">
+🤖 BLACK MUSIC BOT COMMANDS
+</h2>
+
+<div class="row g-4">
+
+<!-- MUSIC -->
+<div class="col-lg-4">
+<div class="card command-card">
+<h4>🎵 Music</h4>
+
+<div class="cmd">🎶 <b>/play</b><span>Request a song</span></div>
+<div class="cmd">🎵 <b>/now</b><span>Current song</span></div>
+<div class="cmd">⏭ <b>/next</b><span>Next song</span></div>
+<div class="cmd">📋 <b>/queue</b><span>Queue list</span></div>
+<div class="cmd">⏩ <b>/skip</b><span>Skip song</span></div>
+<div class="cmd">⬆ <b>/top N</b><span>Move to top</span></div>
+<div class="cmd">⭐ <b>/fav</b><span>Save current song</span></div>
+<div class="cmd">📖 <b>/flist</b><span>Favorites list</span></div>
+<div class="cmd">▶ <b>/mfav N</b><span>Play favorite</span></div>
+<div class="cmd">🗑 <b>/rfav N</b><span>Delete favorite</span></div>
+<div class="cmd">❌ <b>/cfav</b><span>Clear favorites</span></div>
+
+</div>
+</div>
+
+<!-- TICKETS -->
+
+<div class="col-lg-4">
+<div class="card command-card">
+
+<h4>🎫 Tickets</h4>
+
+<div class="cmd">🎫 <b>/wallet</b><span>Ticket balance</span></div>
+<div class="cmd">✔ <b>/verify</b><span>Get 3 free tickets</span></div>
+<div class="cmd">💰 <b>/rlist</b><span>Prices & VIP</span></div>
+
+</div>
+</div>
+
+<!-- INFO -->
+
+<div class="col-lg-4">
+<div class="card command-card">
+
+<h4>📊 Information</h4>
+
+<div class="cmd">❓ <b>/help</b><span>Help menu</span></div>
+<div class="cmd">🔍 <b>/dump N</b><span>Song info</span></div>
+<div class="cmd">🎧 <b>/cbit</b><span>Current bitrate</span></div>
+<div class="cmd">🆘 <b>/sos</b><span>Support</span></div>
+<div class="cmd">📈 <b>/accs</b><span>Statistics</span></div>
+<div class="cmd">👤 <b>/info @user</b><span>User info</span></div>
+
+</div>
+</div>
+
+<!-- PROMOTION -->
+
+<div class="col-lg-4">
+<div class="card command-card">
+
+<h4>📢 Promotion</h4>
+
+<div class="cmd">📣 <b>/promo</b><span>Add promotion</span></div>
+<div class="cmd">❌ <b>/rpromo</b><span>Remove promotion</span></div>
+<div class="cmd">🗑 <b>/cpromo</b><span>Clear promotions</span></div>
+<div class="cmd">📨 <b>/invite</b><span>Invite everyone</span></div>
+
+</div>
+</div>
+
+<!-- SETTINGS -->
+
+<div class="col-lg-4">
+<div class="card command-card">
+
+<h4>⚙ Settings</h4>
+
+<div class="cmd"><b>/setbot</b><span>Bot location</span></div>
+<div class="cmd"><b>/base</b><span>Base</span></div>
+<div class="cmd"><b>/idroom</b><span>Room ID</span></div>
+<div class="cmd"><b>/idbot</b><span>Bot Token</span></div>
+<div class="cmd"><b>/equip</b><span>Wear item</span></div>
+<div class="cmd"><b>/remove</b><span>Remove item</span></div>
+<div class="cmd"><b>/color</b><span>Item color</span></div>
+
+</div>
+</div>
+
+<!-- ECONOMY -->
+
+<div class="col-lg-4">
+<div class="card command-card">
+
+<h4>💰 Economy</h4>
+
+<div class="cmd"><b>/give</b><span>Give tickets</span></div>
+<div class="cmd"><b>/withdraw</b><span>Withdraw</span></div>
+<div class="cmd"><b>/bwallet</b><span>Bot wallet</span></div>
+<div class="cmd"><b>/bgive</b><span>Send gold</span></div>
+<div class="cmd"><b>/transfer</b><span>Transfer gold</span></div>
+<div class="cmd"><b>/prices</b><span>Prices</span></div>
+<div class="cmd"><b>/setticketprice</b></div>
+<div class="cmd"><b>/setticketmulti</b></div>
+<div class="cmd"><b>/setvipprice</b></div>
+<div class="cmd"><b>/setmindonation</b></div>
+<div class="cmd"><b>/setgoldmessage</b></div>
+
+</div>
+</div>
+
+<!-- USERS -->
+
+<div class="col-lg-6">
+<div class="card command-card">
+
+<h4>👑 Users</h4>
+
+<div class="cmd"><b>/ownerz</b><span>Owners</span></div>
+<div class="cmd"><b>/vipz</b><span>VIP users</span></div>
+<div class="cmd"><b>/add</b><span>Add owner</span></div>
+<div class="cmd"><b>/rem</b><span>Remove owner</span></div>
+<div class="cmd"><b>/addv</b><span>Add VIP</span></div>
+<div class="cmd"><b>/remv</b><span>Remove VIP</span></div>
+<div class="cmd"><b>/cvip</b><span>Clear VIP</span></div>
+<div class="cmd"><b>/msg</b><span>Notify user</span></div>
+<div class="cmd"><b>/rmsg</b><span>Remove notification</span></div>
+<div class="cmd"><b>/cmsg</b><span>Clear notifications</span></div>
+
+</div>
+</div>
+
+<!-- MODS -->
+
+<div class="col-lg-6">
+<div class="card command-card">
+
+<h4>🛡 Moderators</h4>
+
+<div class="cmd"><b>/addm @user</b><span>Add moderator</span></div>
+<div class="cmd"><b>/rmm @user</b><span>Remove moderator</span></div>
+<div class="cmd"><b>/modz</b><span>Moderator list</span></div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+  
+    
+
+
+
+
+
+
+<script>
+
+
+async function load(){
+
+
+try{
+
+
+let d = await (await fetch('/api/status')).json();
+
+
+
+bot_name.textContent =
+d.bot_name || "BLACK MUSIC BOT";
+
+
+
+online.textContent =
+d.online ? "🟢 ONLINE" : "🔴 OFFLINE";
+
+
+
+users.textContent =
+d.users || 0;
+
+
+vip.textContent =
+d.vip || 0;
+
+
+queue.textContent =
+d.queue || 0;
+
+
+
+song.textContent =
+d.song || "Nothing Playing";
+
+
+artist.textContent =
+d.artist || "";
+
+
+
+duration.textContent =
+d.duration || "--:--";
+
+
+
+cpu.textContent =
+d.cpu || 0;
+
+ram.textContent =
+d.ram || 0;
+
+
+
+cpub.style.width =
+(d.cpu || 0)+"%";
+
+
+ramb.style.width =
+(d.ram || 0)+"%";
+
+
+
+let s=d.uptime||0;
+
+let h=Math.floor(s/3600);
+
+let m=Math.floor((s%3600)/60);
+
+let sec=s%60;
+
+
+uptime.textContent =
+`${h}h ${m}m ${sec}s`;
+
+
+
+}catch(e){
+
+console.log(e);
+
+}
+
+
+}
+
+
+
+async function skipSong(){
+
+await fetch('/api/skip',{
+method:"POST"
+});
+
+}
+
+async function loadFavorites(){
+
+try{
+
+let data = await (
+await fetch('/api/favorites')
+).json();
+
+
+favoriteList.innerHTML="";
+
+
+if(data.length === 0){
+
+favoriteList.innerHTML =
+`
+<div style="
+text-align:center;
+color:#94a3b8;
+padding:20px;
+font-weight:bold;
+">
+⭐ No Favorite Songs
+</div>
+`;
+
+return;
+
+}
+
+
+
+data.forEach(song=>{
+
+
+favoriteList.innerHTML += `
+
+<div class="d-flex justify-content-between align-items-center p-2">
+
+<span style="
+color:#38bdf8;
+font-weight:800;
+">
+
+🎵 ${song.name}
+
+</span>
+
+
+<button 
+class="btn btn-danger btn-sm"
+onclick="deleteFavorite('${song.name}')">
+
+🗑 Delete
+
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+}catch(e){
+
+console.log(e);
+
+}
+
+}
+
+
+
+async function deleteFavorite(name){
+
+
+await fetch('/api/favorites/delete',{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+name:name
+
+})
+
+});
+
+
+loadFavorites();
+
+}
+
+
+
+async function searchYoutube(){
+
+let q = favSearch.value;
+
+
+if(!q)return;
+
+
+youtubeResults.innerHTML =
+"Searching...";
+
+
+
+let res = await fetch('/api/youtube/search',{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+query:q
+
+})
+
+});
+
+
+let data = await res.json();
+
+
+
+youtubeResults.innerHTML="";
+
+
+
+data.forEach(song=>{
+
+
+youtubeResults.innerHTML += `
+
+<div class="p-2">
+
+<span style="
+color:#facc15;
+font-weight:800;
+">
+
+🎵 ${song.title}
+
+</span>
+
+
+<button 
+class="btn btn-success btn-sm float-end"
+onclick='addFavorite(${JSON.stringify(song.url)}, ${JSON.stringify(song.title)})'>
+
+⭐ Add
+
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+}
+
+
+
+async function addFavorite(url,title){
+
+await fetch('/api/favorites/add',{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+url:url,
+title:title
+
+})
+
+});
+
+
+loadFavorites();
+
+}
+async function restartBot(){
+
+if(confirm("Restart Bot?")){
+
+await fetch('/api/restart',{
+method:"POST"
+});
+
+}
+
+}
+
+function toggleCommands(){
+
+const box=document.getElementById("commandsBox");
+
+if(box.style.display==="block"){
+
+    box.style.display="none";
+
+}else{
+
+    box.style.display="block";
+    box.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+}
+    
+
+load();
+loadFavorites();
+
+setInterval(load,1000);
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
