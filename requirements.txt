@@ -1,0 +1,12 @@
+rapidfuzz
+highrise-bot-sdk
+flask
+yt-dlp
+spotipy
+aiofiles
+mutagen
+psutil
+requests
+discord.py
+pytz
+rapidfuzz

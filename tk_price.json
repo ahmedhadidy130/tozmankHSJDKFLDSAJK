@@ -1,0 +1,7 @@
+{
+    "ticket_price": 10,
+    "ticket_multiplier": 3,
+    "vip_price": 1000,
+    "min_donation": 10,
+    "gold_1_message": "Donating one gold is not enough. The minimum is 10."
+}
